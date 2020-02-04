@@ -7,8 +7,9 @@ public class RuleBasedInstructions : MonoBehaviour
     public bool rebuild;
 
     public string[] paperColor;
+    public string[] paperType;
 
-    public string[] doodleShape;
+    public string[] stickerShape;
     public int minNumber;
     public int maxNumber;
 
@@ -24,25 +25,29 @@ public class RuleBasedInstructions : MonoBehaviour
         if (rebuild)
         {
 
-            string output = "Choose a piece of";
+            string output = "Choose a ";
+
+            string pType = paperType[Random.Range(0, paperType.Length)];
+
+            output += pType + " piece of ";
 
             string pColor = paperColor[Random.Range(0, paperColor.Length)];
 
             output += pColor + " paper.\nThen choose ";
 
             int howMany = Random.Range(minNumber, maxNumber);
-            string sShape = doodleShape[Random.Range(0, doodleShape.Length)];
+            string sShape = stickerShape[Random.Range(0, stickerShape.Length)];
 
-            output += howMany + " " + sShape + " doodles.\nPlace them ";
+            output += howMany + " " + sShape + " stickers.\nPlace them ";
 
             string pPosition = positionOnPaper[Random.Range(0, positionOnPaper.Length)];
 
             output += pPosition + " of the paper.\nThen choose ";
 
             howMany *= 2;
-            sShape = doodleShape[Random.Range(0, doodleShape.Length)];
+            sShape = stickerShape[Random.Range(0, stickerShape.Length)];
 
-            output += howMany + " " + sShape + " doodles.\nPlace them ";
+            output += howMany + " " + sShape + " stickers.\nPlace them ";
 
             pPosition = positionOnPaper[Random.Range(0, positionOnPaper.Length)];
 
