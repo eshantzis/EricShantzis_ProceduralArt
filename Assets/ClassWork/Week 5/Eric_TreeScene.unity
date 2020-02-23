@@ -220,9 +220,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1297264360}
-  - component: {fileID: 1297264359}
-  - component: {fileID: 1297264358}
-  - component: {fileID: 1297264361}
+  - component: {fileID: 1297264363}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -230,36 +228,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1297264358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297264357}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a37a86ec23d7343b185c5f95f33d6470, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rebuild: 0
-  detail: 100
---- !u!114 &1297264359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297264357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fdc47411e7a483d9745a87fcd594d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rebuild: 0
-  branch: {fileID: 6448592519352039454, guid: d423fc965c3aa446abc4d619da4b4ca2, type: 3}
-  fruit: {fileID: 3802458072584579682, guid: 0a10e8a0fdd17423c9a2f2d2ea0746c6, type: 3}
-  amount: 10
 --- !u!4 &1297264360
 Transform:
   m_ObjectHideFlags: 0
@@ -274,7 +242,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1297264361
+--- !u!114 &1297264363
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -283,13 +251,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1297264357}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8754d7a5dd973034ab30ca6050084071, type: 3}
+  m_Script: {fileID: 11500000, guid: 0ba8e93fbe6535e42acb2300d3cca786, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rebuild: 0
-  objects:
-  - {fileID: 3802458072584579682, guid: 0a10e8a0fdd17423c9a2f2d2ea0746c6, type: 3}
-  amount: 10
+  trunkPrefab: {fileID: 8229143836348110440, guid: 4186dbf794586b74ea04d40cae510d61,
+    type: 3}
+  trunkHeight: 10
+  trunkWidth: 1
+  branchPrefab:
+  - {fileID: 7532658688551397378, guid: 01a4ebe821e68364d800a34b58ff561f, type: 3}
+  branchHorizontalDistance: 1
+  branchHeightMult: 1
+  branchWidth: 2
+  branchScaler: 1
+  branchScalerMin: 0
+  branchScalerMax: 100
+  numberOfBranches: 12
 --- !u!1 &2060454802
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2060454802}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -4.4}
+  m_LocalPosition: {x: 0, y: 5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
