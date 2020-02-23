@@ -10,31 +10,26 @@ namespace Art
         public GameObject trunkPrefab;
         public float trunkHeight = 10;
         public float trunkWidth = 1;
+
         public GameObject[] branchPrefab;
-        public float branchHorizontalDistance = 1;
-        public float branchHeightMult = 1;
         public float branchWidth = 1;
-        public float branchScaler = 1;
+        public int numberOfBranches = 1;
         public float branchScalerMin = 0;
         public float branchScalerMax = 100;
-        public int numberOfBranches = 1;
+
+        public int numberOfRows = 1;
+        public float initialRowHeight = 0;
+        public float rowHeightMult = 1;
+        public float rowScaler = 1;
 
         bool initialized = false;
 
         public override void MakeArt()
         {
 
-            GameObject treeTrunk = MakeTrunk();
-            treeTrunk.transform.parent = root.transform;
-            treeTrunk.name = "Tree Trunk";
-
-            //GameObject treeBranch = MakeBranch();
-            //treeBranch.transform.parent = treeTrunk.transform;
-            //treeBranch.name = "Tree Branch";
-
-            GameObject treeRow = MakeRow();
-            treeRow.transform.parent = treeTrunk.transform;
-            treeRow.name = "Branch Row";
+            GameObject tree = MakeTree();
+            tree.transform.parent = root.transform;
+            tree.name = "Tree_GRP";
 
             initialized = true;
         }
@@ -68,14 +63,34 @@ namespace Art
         GameObject MakeRow(){
             GameObject rowBranchRoot = new GameObject("Branch Row");
 
-            for (int j = 0; j < numberOfBranches; j++){
-                GameObject rowBranch = MakeBranch();
-                float branchScaler = Random.Range(branchScalerMin, branchScalerMax);
-                rowBranch.transform.parent = rowBranchRoot.transform;
-                rowBranch.transform.localEulerAngles = new Vector3(0, 360 / (j+1), 0);
-                transform.GetChild(1).localScale = new Vector3((1 + (branchScaler * 0.01f)), 1, 1);
+            for (int i = 0; i < numberOfBranches; i++)
+            {
+                GameObject branch = MakeBranch();
+                float branchScaler = 0.01f*Random.Range(branchScalerMin, branchScalerMax);
+                branch.transform.parent = rowBranchRoot.transform;
+                branch.transform.localEulerAngles = new Vector3(0, (360/numberOfBranches)*i, 0);
+                branch.transform.GetChild(0).localScale = new Vector3(branchScaler, branchScaler, 1);
+
             }
             return rowBranchRoot;
+        }
+
+        GameObject MakeTree()
+        {
+            GameObject treeTrunk = MakeTrunk();
+            treeTrunk.transform.parent = root.transform;
+            treeTrunk.name = "Tree Trunk";
+
+            for (int i = 0; i < numberOfRows; i++)
+            {
+                for (int j = 0; j < rowScaler; j++)
+                {
+                    GameObject row = MakeRow();
+                    row.transform.parent = treeTrunk.transform;
+                    row.transform.localPosition = new Vector3(0, initialRowHeight + rowHeightMult * i, 0);
+                }
+            }
+            return treeTrunk;
         }
 }
 }
