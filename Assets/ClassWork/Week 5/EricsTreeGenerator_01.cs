@@ -21,6 +21,8 @@ namespace Art
         public float initialRowHeight = 0;
         public float rowHeightMult = 1;
         public float rowScaler = 1;
+        private float rowScalerPrivate = 1;
+
 
         bool initialized = false;
 
@@ -83,14 +85,37 @@ namespace Art
 
             for (int i = 0; i < numberOfRows; i++)
             {
-                for (int j = 0; j < rowScaler; j++)
+               
+                GameObject row = MakeRow();
+                row.transform.parent = treeTrunk.transform;
+                row.transform.localPosition = new Vector3(0, initialRowHeight + rowHeightMult * i, 0);
+                print(row.transform.childCount);
+
+
+                //to scale the branches down overtime
+                //kinda funky rn, work on it 
+                for (int j = 0; j < row.transform.childCount; j++)
                 {
-                    GameObject row = MakeRow();
-                    row.transform.parent = treeTrunk.transform;
-                    row.transform.localPosition = new Vector3(0, initialRowHeight + rowHeightMult * i, 0);
+                    row.transform.GetChild(j).GetChild(0).localScale = Vector3.one * rowScalerPrivate;
+                    print(row.transform.GetChild(j).GetChild(0).name);
                 }
+                rowScalerPrivate *= rowScaler * .9f;
             }
             return treeTrunk;
         }
+        //adjust rowscaler to not get smaller every time it is created
+
+        //this is to select from a specific array of prefabs (aka select from only stick prefabs vs selecting from leafy prefabs)
+        // use if statements to select certain branch prefabs so like
+        // if row.transform. Y component? idk > 3 then ... (look at next line)
+        //int index = Random.Range(0, branchPrefab.Length);
+        //branchPrefab[index];
+
+        //using the arttube script ot create geometry  for a trunk
+        //the art tube creates a tube along an array of vector3s
+        //make the tube, get the array of vector 3s, then spawn rows along the vector 3
+        // he also asked about rotating branches a little to make sure they don't point straight at the camera
+
+
 }
 }
