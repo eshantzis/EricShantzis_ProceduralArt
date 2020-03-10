@@ -220,6 +220,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2524276006851334371, guid: c5b4af4916fb54d2d8df0c87d90d1660,
+        type: 3}
+      propertyPath: m_Name
+      value: ArtGallery
+      objectReference: {fileID: 0}
     - target: {fileID: 2524276006851334370, guid: c5b4af4916fb54d2d8df0c87d90d1660,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -274,11 +279,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2524276006851334371, guid: c5b4af4916fb54d2d8df0c87d90d1660,
-        type: 3}
-      propertyPath: m_Name
-      value: ArtGallery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b4af4916fb54d2d8df0c87d90d1660, type: 3}
@@ -505,7 +505,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297264357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc67d3a91607f7e46a5fba0a996728fb, type: 3}
   m_Name: 
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297264357}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ba8e93fbe6535e42acb2300d3cca786, type: 3}
   m_Name: 
@@ -543,22 +543,35 @@ MonoBehaviour:
   trunkPrefab: {fileID: 8229143836348110440, guid: 4186dbf794586b74ea04d40cae510d61,
     type: 3}
   trunkHeight: 10
-  trunkWidth: 1
+  trunkWidth: 0.5
   branchPrefab:
-  - {fileID: 7532658688551397378, guid: 01a4ebe821e68364d800a34b58ff561f, type: 3}
-  branchWidth: 2
-  numberOfBranches: 12
-  branchScalerMin: 80
+  - {fileID: 6774557237526011161, guid: 9a2532564215ef74283837cc633b22b9, type: 3}
+  - {fileID: 1408695215673703598, guid: 334320dfe99a9eb47866e1c9a43f3a5d, type: 3}
+  - {fileID: 1695687125057828044, guid: 4c9bf7a5732d0064ba3f02d7e14dc8c8, type: 3}
+  - {fileID: 6650844020768029469, guid: cdc5f670f297d8e43966856792558b8d, type: 3}
+  - {fileID: 7625257052118278441, guid: 9420dfa0e69b2e04e9cb5c228b04483e, type: 3}
+  - {fileID: 534542742957092899, guid: 7d3e5084dcd4b934282e00a72dd315c7, type: 3}
+  branchWidth: 8
+  branchNumberMin: 6
+  branchNumberMax: 12
+  branchScalerMin: 60
   branchScalerMax: 100
-  numberOfRows: 12
+  rowNumberMin: 4
+  rowNumberMax: 12
   initialRowHeight: 5
-  rowHeightMult: 1.4
-  rowScaler: 0.8
-  rowScaleMult: 0.01
-  rowScaleMultCap: 0.6
-  initialRowRotation: -10
-  rowRotationMult: -5
-  rowRotationMultCap: -60
+  rowHeightMultMin: 0
+  rowHeightMultMax: 1
+  rowScaler: 0
+  rowScaleMultMin: 0
+  rowScaleMultMax: 1
+  rowScaleMultCapMin: 0.2
+  rowScaleMultCapmax: 0.5
+  initialRowRotationMin: 0
+  initialRowRotationMax: 30
+  rowRotationMultMin: 3
+  rowRotationMultMax: 10
+  rowRotationMultCapMin: 30
+  rowRotationMultCapMax: 60
 --- !u!1 &2060454802
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,7 +608,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 0.6096476, g: 0.73164034, b: 0.9433962, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

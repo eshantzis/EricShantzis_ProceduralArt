@@ -13,23 +13,47 @@ namespace Art
 
         public GameObject[] branchPrefab;
         public float branchWidth = 1;
-        public int numberOfBranches = 1;
+
+        private int numberOfBranches = 1;
+        public int branchNumberMin = 0;
+        public int branchNumberMax = 24;
+
         public float branchScalerMin = 0;
         public float branchScalerMax = 100;
 
-        public int numberOfRows = 1;
+        private int numberOfRows = 1;
+        public int rowNumberMin = 0;
+        public int rowNumberMax = 12;
+
         public float initialRowHeight = 0;
-        public float rowHeightMult = 1;
+        private float rowHeightMult = 1;
+        public float rowHeightMultMin = 0;
+        public float rowHeightMultMax = 1;
 
         public float rowScaler = 0;
-        public float rowScaleMult = 0;
+        private float rowScaleMult = 0;
+        public float rowScaleMultMin = 0;
+        public float rowScaleMultMax = 1;
         private float rowScaleMultPrivate = 1;
-        public float rowScaleMultCap = 1;
 
-        public float initialRowRotation = 0;
-        public float rowRotationMult = 0;
+        private float rowScaleMultCap = 1;
+        public float rowScaleMultCapMin = 0;
+        public float rowScaleMultCapmax = 1;
+
+        private float initialRowRotation = 0;
+        public float initialRowRotationMin = 0;
+        public float initialRowRotationMax = 360;
+
+        private float rowRotationMult = 0;
+        public float rowRotationMultMin = 0;
+        public float rowRotationMultMax = 360;
+
         private float rowRotationMultPrivate = 0;
-        public float rowRotationMultCap = 1;
+
+        private float rowRotationMultCap = 1;
+        public float rowRotationMultCapMin = 0;
+        public float rowRotationMultCapMax = 1;
+
 
         bool initialized = false;
 
@@ -76,6 +100,8 @@ namespace Art
             {
                 GameObject branch = MakeBranch();
                 float branchScaler = 0.01f*Random.Range(branchScalerMin, branchScalerMax);
+                numberOfBranches = Random.Range(branchNumberMin, branchNumberMax);
+
                 branch.transform.parent = rowBranchRoot.transform;
                 branch.transform.localEulerAngles = new Vector3(0, (360/numberOfBranches)*i, 0);
                 branch.transform.GetChild(0).localScale = new Vector3(branchScaler, branchScaler, 1);
@@ -89,19 +115,29 @@ namespace Art
             GameObject treeTrunk = MakeTrunk();
             treeTrunk.transform.parent = root.transform;
             treeTrunk.name = "Tree Trunk";
+            numberOfRows = Random.Range(rowNumberMin, rowNumberMax);
 
             for (int i = 0; i < numberOfRows; i++)
             {
                
                 GameObject row = MakeRow();
+                rowHeightMult = Random.Range(rowHeightMultMin, rowHeightMultMax);
                 row.transform.parent = treeTrunk.transform;
                 row.transform.localPosition = new Vector3(0, initialRowHeight + rowHeightMult * i, 0);
                 print(row.transform.childCount);
 
+                rowScaleMult = Random.Range(rowScaleMultMin, rowScaleMultMax);
                 rowScaleMultPrivate *= 1 - (i*rowScaleMult);
+
+
+                initialRowRotation = Random.Range(initialRowRotationMin, initialRowRotationMax);
+                rowRotationMult = Random.Range(rowRotationMultMin, rowRotationMultMax);
+                rowRotationMultCap = Random.Range(rowRotationMultCapMin, rowRotationMultCapMax);
 
                 rowRotationMultPrivate = initialRowRotation;
                 rowRotationMultPrivate += (i * rowRotationMult);
+
+                rowScaleMultCap = Random.Range(rowScaleMultCapMin, rowScaleMultCapmax);
 
                 for (int j = 0; j < row.transform.childCount; j++)
                 {
