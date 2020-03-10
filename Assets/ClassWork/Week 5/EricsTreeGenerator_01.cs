@@ -20,9 +20,16 @@ namespace Art
         public int numberOfRows = 1;
         public float initialRowHeight = 0;
         public float rowHeightMult = 1;
-        public float rowScaler = 1;
-        private float rowScalerPrivate = 1;
 
+        public float rowScaler = 0;
+        public float rowScaleMult = 0;
+        private float rowScaleMultPrivate = 1;
+        public float rowScaleMultCap = 1;
+
+        public float initialRowRotation = 0;
+        public float rowRotationMult = 0;
+        private float rowRotationMultPrivate = 0;
+        public float rowRotationMultCap = 1;
 
         bool initialized = false;
 
@@ -91,19 +98,45 @@ namespace Art
                 row.transform.localPosition = new Vector3(0, initialRowHeight + rowHeightMult * i, 0);
                 print(row.transform.childCount);
 
+                rowScaleMultPrivate *= 1 - (i*rowScaleMult);
 
-                //to scale the branches down overtime
-                //kinda funky rn, work on it 
+                rowRotationMultPrivate = initialRowRotation;
+                rowRotationMultPrivate += (i * rowRotationMult);
+
                 for (int j = 0; j < row.transform.childCount; j++)
                 {
-                    row.transform.GetChild(j).GetChild(0).localScale = Vector3.one * rowScalerPrivate;
-                    print(row.transform.GetChild(j).GetChild(0).name);
+                    if (rowScaleMultPrivate < rowScaleMultCap)
+                    {
+                        rowScaleMultPrivate = rowScaleMultCap;
+                        row.transform.GetChild(j).GetChild(0).localScale *= (1 + rowScaler) * rowScaleMultPrivate;
+                        print(row.transform.GetChild(j).GetChild(0).name);
+                    }
+                    else
+                    {
+                        row.transform.GetChild(j).GetChild(0).localScale *= (1 + rowScaler) * rowScaleMultPrivate;
+                        print(row.transform.GetChild(j).GetChild(0).name);
+                    }
+
+                    if (rowRotationMultPrivate < rowRotationMultCap)
+                    {
+                        Vector3 rowRotation = row.transform.GetChild(j).localEulerAngles;
+                        rowRotation.z = rowRotationMultCap;
+                        row.transform.GetChild(j).localEulerAngles = rowRotation;
+                        print(row.transform.GetChild(j).name);
+                    }
+                    else
+                    {
+                        Vector3 rowRotation = row.transform.GetChild(j).localEulerAngles;
+                        rowRotation.z = rowRotationMultPrivate;
+                        row.transform.GetChild(j).localEulerAngles = rowRotation;
+                        print(row.transform.GetChild(j).name);
+                    }
                 }
-                rowScalerPrivate *= rowScaler * .9f;
             }
+            rowScaleMultPrivate = 1f;
+            rowRotationMultPrivate = 0f;
             return treeTrunk;
         }
-        //adjust rowscaler to not get smaller every time it is created
 
         //this is to select from a specific array of prefabs (aka select from only stick prefabs vs selecting from leafy prefabs)
         // use if statements to select certain branch prefabs so like

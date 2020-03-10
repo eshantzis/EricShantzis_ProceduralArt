@@ -220,11 +220,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2524276006851334371, guid: c5b4af4916fb54d2d8df0c87d90d1660,
-        type: 3}
-      propertyPath: m_Name
-      value: ArtGallery
-      objectReference: {fileID: 0}
     - target: {fileID: 2524276006851334370, guid: c5b4af4916fb54d2d8df0c87d90d1660,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -279,6 +274,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524276006851334371, guid: c5b4af4916fb54d2d8df0c87d90d1660,
+        type: 3}
+      propertyPath: m_Name
+      value: ArtGallery
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5b4af4916fb54d2d8df0c87d90d1660, type: 3}
@@ -475,6 +475,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1297264360}
   - component: {fileID: 1297264363}
+  - component: {fileID: 1297264358}
+  - component: {fileID: 1297264359}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -482,6 +484,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1297264358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297264357}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37a86ec23d7343b185c5f95f33d6470, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebuild: 0
+  detail: 100
+--- !u!114 &1297264359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297264357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc67d3a91607f7e46a5fba0a996728fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebuild: 0
+  detail: 100
+  mult: 1
 --- !u!4 &1297264360
 Transform:
   m_ObjectHideFlags: 0
@@ -503,7 +534,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297264357}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ba8e93fbe6535e42acb2300d3cca786, type: 3}
   m_Name: 
@@ -519,10 +550,15 @@ MonoBehaviour:
   numberOfBranches: 12
   branchScalerMin: 80
   branchScalerMax: 100
-  numberOfRows: 6
+  numberOfRows: 12
   initialRowHeight: 5
-  rowHeightMult: 3
-  rowScaler: 1
+  rowHeightMult: 1.4
+  rowScaler: 0.8
+  rowScaleMult: 0.01
+  rowScaleMultCap: 0.6
+  initialRowRotation: -10
+  rowRotationMult: -5
+  rowRotationMultCap: -60
 --- !u!1 &2060454802
 GameObject:
   m_ObjectHideFlags: 0
