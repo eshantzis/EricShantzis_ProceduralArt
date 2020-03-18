@@ -6,8 +6,11 @@ namespace Art
 {
     public class ArtSquareTube_Eric : ArtMakerTemplate
     {
-        public int detail = 100;
-        public float mult = 1;
+        public int detail = 20;
+        public float mult = 50;
+        public float startRadius = 1;
+        private float startRadiusPrivate = 1;
+        public float heightIncrement = 0.5f;
 
 		public override void MakeArt()
 		{
@@ -21,15 +24,23 @@ namespace Art
 
             for (int i = 0; i < detail; i++)
             {
-                float j = i*mult+r;
-                vecs[i] = new Vector3(
-                    Mathf.PerlinNoise(j*4.3321f,j)-.5f,
-                    Mathf.PerlinNoise(j,j*3.342f)-.5f,
-                    Mathf.PerlinNoise(j * 4.3321f, j*.345f) - .5f)*2;
-                radius[i] = (Mathf.Cos((i/detail*Mathf.PI*2)-1)*-.015f);
+                if (i < 0)  {
+                    vecs[i] = Vector3.zero;
+                    radius[i] = startRadius;
+                }
+                else
+                {
+                    float j = i * (mult * 0.001f) + r;
+                    vecs[i] = new Vector3(Mathf.PerlinNoise(0, j), heightIncrement*i, Mathf.PerlinNoise(0,j));
+                    //radius[i] = startRadius-(startRadius*(i/detail));
+                    startRadiusPrivate += -(startRadius / detail);
+                    radius[i] = startRadiusPrivate;
+
+                }
 
             }
 
+            startRadiusPrivate = startRadius;
             tube.SetPoints(vecs, radius, Color.white);
             tube.material = new Material(Shader.Find("Standard"));
 
